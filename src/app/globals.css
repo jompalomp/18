@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Varvtal — designtoken
+   Neutral bas + en accent (signalröd, som en REC/peak-lampa).
+   Ljust läge är standard; mörkt följer systemet om inget valts,
+   och kan tvingas med <html data-theme="dark|light">.
+   ------------------------------------------------------------------ */
+
+:root {
+  --bg: #f6f5f1;          /* off-white */
+  --surface: #ffffff;     /* kort, fodral */
+  --surface-2: #eceae4;   /* infällda ytor */
+  --fg: #141414;
+  --muted: #6b6a66;
+  --line: #dcd9d1;
+  --accent: #e5322d;      /* signalröd */
+  --accent-fg: #ffffff;
+  --led-off: #d6d3cb;
+  --led-on: #141414;
+  --lcd-bg: #1a1a19;
+  --lcd-fg: #f2f0ea;
+  --lcd-ghost: rgba(242, 240, 234, 0.08);
+  --knob-top: #fbfaf7;
+  --knob-side: #d9d6ce;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 8px 24px -12px rgba(0, 0, 0, 0.18);
+  color-scheme: light;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e0e0f;
+    --surface: #171718;
+    --surface-2: #1f1f21;
+    --fg: #ecebe6;
+    --muted: #8d8c87;
+    --line: #2a2a2c;
+    --accent: #ff3b30;
+    --accent-fg: #ffffff;
+    --led-off: #2c2c2e;
+    --led-on: #ecebe6;
+    --lcd-bg: #070707;
+    --lcd-fg: #ecebe6;
+    --lcd-ghost: rgba(236, 235, 230, 0.06);
+    --knob-top: #2a2a2c;
+    --knob-side: #121213;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px -12px rgba(0, 0, 0, 0.7);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0e0e0f;
+  --surface: #171718;
+  --surface-2: #1f1f21;
+  --fg: #ecebe6;
+  --muted: #8d8c87;
+  --line: #2a2a2c;
+  --accent: #ff3b30;
+  --accent-fg: #ffffff;
+  --led-off: #2c2c2e;
+  --led-on: #ecebe6;
+  --lcd-bg: #070707;
+  --lcd-fg: #ecebe6;
+  --lcd-ghost: rgba(236, 235, 230, 0.06);
+  --knob-top: #2a2a2c;
+  --knob-side: #121213;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px -12px rgba(0, 0, 0, 0.7);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-led-off: var(--led-off);
+  --color-led-on: var(--led-on);
+  --color-lcd-bg: var(--lcd-bg);
+  --color-lcd-fg: var(--lcd-fg);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --shadow-card: var(--shadow);
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Siffror som på en CD-spelares display. Används sparsamt. */
+.lcd {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums slashed-zero;
+  letter-spacing: 0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
