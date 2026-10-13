@@ -23,10 +23,20 @@ export function average(values: Rating[]): number | null {
 }
 
 /**
- * Skivans varvtal per betyg. 1 ≈ en långsam 16-varvare,
- * 10 ≈ en uppskruvad 78:a. Används av CD-komponenten.
+ * Skivans varvtal per betyg: 1 snurrar långsamt (8 rpm), 10 som en 78:a.
+ * Utan betyg snurrar den i standardfart, 33 ⅓.
  */
+export const RPM_UNRATED = 33;
 export function rpmForRating(rating: Rating): number {
-  if (rating == null) return 0;
-  return 12 + (clampRating(rating) - 1) * 8; // 12 → 84 rpm
+  if (rating == null) return RPM_UNRATED;
+  return Math.round(8 + ((clampRating(rating) - 1) * 70) / 9);
+}
+
+export function formatDuration(ms: number | null): string {
+  if (ms == null) return "–:––";
+  const total = Math.round(ms / 1000);
+  const h = Math.floor(total / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  const s = String(total % 60).padStart(2, "0");
+  return h > 0 ? `${h}:${String(m).padStart(2, "0")}:${s}` : `${m}:${s}`;
 }

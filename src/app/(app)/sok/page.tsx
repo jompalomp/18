@@ -1,0 +1,13 @@
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import { SearchView } from "./SearchView";
+
+export const metadata: Metadata = { title: "Sök" };
+
+export default function Page() {
+  return (
+    <Suspense>
+      <SearchView />
+    </Suspense>
+  );
+}

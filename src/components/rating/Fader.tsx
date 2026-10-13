@@ -125,7 +125,7 @@ export function Fader({
       {/* Spåret (slitsen) */}
       <span
         aria-hidden
-        className="absolute rounded-full bg-surface-2"
+        className="absolute rounded-full bg-line"
         style={
           vertical
             ? { left: "50%", top: CAP_LONG / 2, bottom: CAP_LONG / 2, width: 4, marginLeft: -2 }
